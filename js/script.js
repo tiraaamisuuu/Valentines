@@ -42,9 +42,9 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
   let teaseIndex = 0;
 
-  if (yesBtn && message) {
+  if (yesBtn) {
     yesBtn.addEventListener("click", () => {
-      message.classList.add("show");
+      if (message) message.classList.add("show");
       setTimeout(() => {
         window.location.href = "main.html";
       }, 650);
