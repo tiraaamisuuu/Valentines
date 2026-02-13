@@ -4,6 +4,7 @@
   --warm-white: #fff8f0;
   --text-dark: #2b2b2b;
   --accent: #b85e6b;
+  --font-handwritten: "Bradley Hand", "Segoe Print", "Chalkboard SE", "Marker Felt", "Lucida Handwriting", cursive;
 
   --shadow: 0 16px 40px rgba(0, 0, 0, 0.14);
   --shadow-soft: 0 10px 20px rgba(0, 0, 0, 0.10);
@@ -447,7 +448,7 @@ body {
 }
 
 .polaroid figcaption {
-  font-family: "Comic Sans MS", "Comic Sans", cursive, sans-serif;
+  font-family: var(--font-handwritten);
   font-size: 0.85rem;
   color: #333;
   margin-top: 10px;
@@ -600,7 +601,7 @@ body {
   border-radius: 14px;
   background: linear-gradient(160deg, rgba(255, 255, 255, 0.8), rgba(255, 248, 240, 0.7));
   color: var(--text-dark);
-  font-family: "Comic Sans MS", "Comic Sans", cursive, sans-serif;
+  font-family: var(--font-handwritten);
   font-size: 0.98rem;
   line-height: 1.35;
   backdrop-filter: blur(12px);

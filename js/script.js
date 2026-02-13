@@ -30,6 +30,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const yesBtn = document.getElementById("yesBtn");
   const noBtn = document.getElementById("noBtn");
   const message = document.getElementById("message");
+  const MUSIC_SRC = "assets/music/song.flac";
+  const MUSIC_PRIMED_KEY = "valentinesMusicPrimed";
+  const MUSIC_TIME_KEY = "valentinesMusicTime";
 
   const noTease = [
     "No 😢",
@@ -44,8 +47,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (yesBtn) {
     yesBtn.addEventListener("click", () => {
+      const preNavAudio = new Audio(MUSIC_SRC);
+      preNavAudio.loop = true;
+      preNavAudio.preload = "auto";
+      preNavAudio.muted = false;
+
+      const rememberPrimeTime = () => {
+        const time = Number(preNavAudio.currentTime);
+        if (Number.isFinite(time) && time > 0) {
+          sessionStorage.setItem(MUSIC_TIME_KEY, String(time));
+        }
+      };
+
+      void preNavAudio.play().then(() => {
+        sessionStorage.setItem(MUSIC_PRIMED_KEY, "1");
+      }).catch(() => {
+        sessionStorage.removeItem(MUSIC_PRIMED_KEY);
+        sessionStorage.removeItem(MUSIC_TIME_KEY);
+      });
+
       if (message) message.classList.add("show");
       setTimeout(() => {
+        rememberPrimeTime();
         window.location.href = "main.html";
       }, 650);
     });
@@ -270,6 +293,29 @@ document.addEventListener("DOMContentLoaded", () => {
   if (music && musicControl) {
     let isPlaying = false;
     let retryBound = false;
+    const primedFromIndex = sessionStorage.getItem(MUSIC_PRIMED_KEY) === "1";
+    const savedTime = Number(sessionStorage.getItem(MUSIC_TIME_KEY));
+
+    music.muted = false;
+    if (!Number.isFinite(music.volume) || music.volume <= 0) {
+      music.volume = 1;
+    }
+
+    if (Number.isFinite(savedTime) && savedTime > 0) {
+      const applySavedTime = () => {
+        try {
+          music.currentTime = savedTime;
+        } catch {
+          // Ignore seek errors when metadata is not ready yet.
+        }
+      };
+
+      if (music.readyState >= 1) {
+        applySavedTime();
+      } else {
+        music.addEventListener("loadedmetadata", applySavedTime, { once: true });
+      }
+    }
 
     const updateBtn = () => {
       musicControl.classList.toggle("is-off", !isPlaying);
@@ -298,6 +344,30 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     };
 
+    const tryMutedKickstart = async () => {
+      const previousMuted = music.muted;
+      const previousVolume = music.volume;
+
+      try {
+        music.muted = true;
+        music.volume = 0;
+        await music.play();
+        music.muted = false;
+        music.volume = previousVolume > 0 ? previousVolume : 1;
+        isPlaying = true;
+        removeRetryListeners();
+        updateBtn();
+        return true;
+      } catch {
+        music.pause();
+        music.muted = previousMuted;
+        music.volume = previousVolume > 0 ? previousVolume : 1;
+        isPlaying = false;
+        updateBtn();
+        return false;
+      }
+    };
+
     const handleRetryInteraction = async (event) => {
       const target = event.target;
       if (
@@ -320,7 +390,16 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     const tryAutoplay = async () => {
-      const started = await tryPlay();
+      let started = await tryPlay();
+
+      if (!started && primedFromIndex) {
+        started = await tryPlay();
+      }
+
+      if (!started) {
+        started = await tryMutedKickstart();
+      }
+
       if (!started) bindRetryListeners();
     };
 
