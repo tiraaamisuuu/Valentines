@@ -269,27 +269,72 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (music && musicControl) {
     let isPlaying = false;
+    let retryBound = false;
 
     const updateBtn = () => {
       musicControl.classList.toggle("is-off", !isPlaying);
       musicControl.textContent = isPlaying ? "🎵" : "🔇";
     };
 
-    updateBtn();
+    const removeRetryListeners = () => {
+      if (!retryBound) return;
+      retryBound = false;
+      document.removeEventListener("pointerdown", handleRetryInteraction);
+      document.removeEventListener("keydown", handleRetryInteraction);
+    };
 
-    musicControl.addEventListener("click", async () => {
+    const tryPlay = async () => {
+      if (isPlaying) return true;
       try {
-        if (!isPlaying) {
-          await music.play();
-          isPlaying = true;
-        } else {
-          music.pause();
-          isPlaying = false;
-        }
+        await music.play();
+        isPlaying = true;
+        removeRetryListeners();
         updateBtn();
+        return true;
       } catch {
         isPlaying = false;
         updateBtn();
+        return false;
+      }
+    };
+
+    const handleRetryInteraction = async (event) => {
+      const target = event.target;
+      if (
+        target &&
+        typeof target.closest === "function" &&
+        target.closest("#musicControl")
+      ) {
+        return;
+      }
+
+      const started = await tryPlay();
+      if (started) removeRetryListeners();
+    };
+
+    const bindRetryListeners = () => {
+      if (retryBound) return;
+      retryBound = true;
+      document.addEventListener("pointerdown", handleRetryInteraction, { passive: true });
+      document.addEventListener("keydown", handleRetryInteraction);
+    };
+
+    const tryAutoplay = async () => {
+      const started = await tryPlay();
+      if (!started) bindRetryListeners();
+    };
+
+    updateBtn();
+    void tryAutoplay();
+
+    musicControl.addEventListener("click", async () => {
+      if (!isPlaying) {
+        await tryPlay();
+      } else {
+        music.pause();
+        isPlaying = false;
+        updateBtn();
+        removeRetryListeners();
       }
     });
   }
