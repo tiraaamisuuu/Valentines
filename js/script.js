@@ -33,12 +33,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const noTease = [
     "No 😢",
-    "Are you sure? 😳",
+    "Are you sure? ",
     "Maya… don’t do this 😭",
-    "You’re joking right? 😤",
-    "That button is broken 😇",
-    "Try Yes instead 💖",
-    "You can’t catch me 😈"
+    "You’re joking right?",
+    "Really?!?!",
+    "Try Yes instead ",
+    "Hmpf"
   ];
   let teaseIndex = 0;
 
@@ -185,7 +185,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Click = even more teasing
     noBtn.addEventListener("click", () => {
-      noBtn.textContent = "😳 Nice try";
+      noBtn.textContent = "Nice try";
       moveNoButton();
     });
 
