@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Our Love Story</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="main-page">
+
+  <!-- soft background decorations -->
+  <div class="bg-blobs" aria-hidden="true">
+    <span class="blob b1"></span>
+    <span class="blob b2"></span>
+    <span class="blob b3"></span>
+  </div>
+
+  <!-- floating hearts -->
+  <div class="hearts" aria-hidden="true"></div>
+
+  <section class="main-content" id="pageContent">
+    <header class="main-hero">
+      <p class="hero-tag">For Maya</p>
+      <h1>Our Little Memory Museum</h1>
+      <p class="hero-sub">Read a note, then tap any polaroid to open it in fullscreen.</p>
+    </header>
+
+    <!-- Love Letter -->
+    <div class="letter-section content-card">
+      <h2>Dear Maya,</h2>
+      <p id="typedLetter"></p>
+    </div>
+
+    <!-- Open When -->
+    <div class="open-when-section content-card">
+      <div class="section-head">
+        <h2>Open When…</h2>
+        <p>Pick a mood and open one of my little notes.</p>
+      </div>
+
+      <div class="open-when-layout">
+        <div class="cards">
+          <button class="card" type="button" data-msg="💌 I love that smile of yours. Keep shining, baby.">You're happy</button>
+          <button class="card" type="button" data-msg="🤗 You don’t have to carry it alone. I’m right here with you.">You're down</button>
+          <button class="card" type="button" data-msg="🎉 Remember our goofy moments. I’m saving up a million more with you. 😄">You want to laugh</button>
+          <button class="card" type="button" data-msg="🌙 Imagine me next to you, rubbing your back, telling you everything will be okay.">You can’t sleep</button>
+          <button class="card" type="button" data-msg="📚 Breathe, baby. One step at a time. You’re stronger than you think.">You’re stressed</button>
+          <button class="card" type="button" data-msg="🧸 Scroll this page, tap our photos, and remember I’m never far from your heart.">You miss me</button>
+          <button class="card" type="button" data-msg="✨ You are beautiful, smart, and unstoppable. Don’t dim your shine for anyone.">You need confidence</button>
+          <button class="card" type="button" data-msg="💍 I still choose you, every day, in every mood, in every season.">You think about us</button>
+        </div>
+        <p class="card-msg" id="cardMessage" aria-live="polite">Tap any card and I’ll open a note for you here.</p>
+      </div>
+    </div>
+
+    <!-- Gallery -->
+    <section class="memory-gallery content-card">
+      <h2>Memories of You, Us, and Baby</h2>
+      <p class="gallery-sub">10 photos in each set, and every one opens in fullscreen.</p>
+
+      <div class="memory-group">
+        <h3>Just You 😍</h3>
+        <div class="polaroid-grid">
+          <figure class="polaroid tilt-random-1">
+            <img src="assets/images/her1.jpeg" alt="Maya photo 1" />
+            <figcaption>Looking gorgeous on Regent Street 😚</figcaption>
+          </figure>
+          <figure class="polaroid tilt-random-2">
+            <img src="assets/images/her2.jpeg" alt="Maya photo 2" />
+            <figcaption>My baby with sunflowers 🌻</figcaption>
+          </figure>
+          <figure class="polaroid tilt-random-3">
+            <img src="assets/images/her3.jpeg" alt="Maya photo 3" />
+            <figcaption>Ice cream in Oxford 🍦🫶</figcaption>
+          </figure>
+          <figure class="polaroid tilt-random-4">
+            <img src="assets/images/her4.jpeg" alt="Maya photo 4" />
+            <figcaption>That smile that fixes everything 💗</figcaption>
+          </figure>
+          <figure class="polaroid tilt-random-5">
+            <img src="assets/images/her5.jpeg" alt="Maya photo 5" />
+            <figcaption>Model behavior, always 😮‍💨</figcaption>
+          </figure>
+          <figure class="polaroid tilt-random-6">
+            <img src="assets/images/her6.jpeg" alt="Maya photo 6" />
+            <figcaption>Still my favorite photo of you 🌹</figcaption>
+          </figure>
+          <figure class="polaroid tilt-random-7">
+            <img src="assets/images/her7.jpeg" alt="Maya photo 7" />
+            <figcaption>Pretty Girl in a dress 👰‍♀️</figcaption>
+          </figure>
+          <figure class="polaroid tilt-random-8">
+            <img src="assets/images/her8.jpeg" alt="Maya photo 8" />
+            <figcaption>My love all ready for Prom ❤️‍🔥</figcaption>
+          </figure>
+          <figure class="polaroid tilt-random-9">
+            <img src="assets/images/her9.jpeg" alt="Maya photo 9" />
+            <figcaption>My two favourite Girls 🐾</figcaption>
+          </figure>
+          <figure class="polaroid tilt-random-10">
+            <img src="assets/images/her10.jpeg" alt="Maya photo 10" />
+            <figcaption>10/10 frolicking, would frolick again 🥹</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="memory-group">
+        <h3>Our Moments 💕</h3>
+        <div class="polaroid-grid">
+          <figure class="polaroid tilt-random-4">
+            <img src="assets/images/us1.jpeg" alt="Us photo 1" />
+            <figcaption>Our first photobooth 📸</figcaption>
+          </figure>
+          <figure class="polaroid tilt-random-5">
+            <img src="assets/images/us2.jpeg" alt="Us photo 2" />
+            <figcaption>Tried a TikTok trend and went overboard... 😄</figcaption>
+          </figure>
+          <figure class="polaroid tilt-random-1">
+            <img src="assets/images/us6.jpeg" alt="Us photo 3" />
+            <figcaption>The most “us” art we’ve ever seen 🖼️</figcaption>
+          </figure>
+          <figure class="polaroid tilt-random-2">
+            <img src="assets/images/us4.jpeg" alt="Us photo 4" />
+            <figcaption>As at Oxford University Disco 🪩</figcaption>
+          </figure>
+          <figure class="polaroid tilt-random-3">
+            <img src="assets/images/us5.jpeg" alt="Us photo 5" />
+            <figcaption>Just Us and a Photobooth 📷</figcaption>
+          </figure>
+          <figure class="polaroid tilt-random-6">
+            <img src="assets/images/us3.jpeg" alt="Us photo 6" />
+            <figcaption>My favorite place is always next to you 🤍</figcaption>
+          </figure>
+          <figure class="polaroid tilt-random-7">
+            <img src="assets/images/us7.jpeg" alt="Us photo 7" />
+            <figcaption>Dinner together (and maybe a couple other people) 🍔</figcaption>
+          </figure>
+          <figure class="polaroid tilt-random-8">
+            <img src="assets/images/us8.jpeg" alt="Us photo 8" />
+            <figcaption>Matching smiles, matching hearts, matching bad skill at mini golf</figcaption>
+          </figure>
+          <figure class="polaroid tilt-random-9">
+            <img src="assets/images/us9.jpeg" alt="Us photo 9" />
+            <figcaption>Me with Mini-You 😄</figcaption>
+          </figure>
+          <figure class="polaroid tilt-random-10">
+            <img src="assets/images/us10.jpeg" alt="Us photo 10" />
+            <figcaption>Always feel connected no matter how far apart ✨</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="memory-group">
+        <h3>Baby Memories 🧸</h3>
+        <div class="polaroid-grid">
+          <figure class="polaroid tilt-random-3">
+            <img src="assets/images/baby1.jpeg" alt="Baby photo 1" />
+            <figcaption>Once a Diva always a Diva 💞</figcaption>
+          </figure>
+          <figure class="polaroid tilt-random-4">
+            <img src="assets/images/baby2.jpeg" alt="Baby photo 2" />
+            <figcaption>Cutest little pose ever 🥹</figcaption>
+          </figure>
+          <figure class="polaroid tilt-random-5">
+            <img src="assets/images/baby3.jpeg" alt="Baby photo 3" />
+            <figcaption>Maya with the cutest little smile I've ever seen ✨</figcaption>
+          </figure>
+          <figure class="polaroid tilt-random-1">
+            <img src="assets/images/baby4.jpeg" alt="Baby photo 4" />
+            <figcaption>Model from Day 1 😘</figcaption>
+          </figure>
+          <figure class="polaroid tilt-random-2">
+            <img src="assets/images/baby5.jpeg" alt="Baby photo 5" />
+            <figcaption>Small Maya, Big Smile 🫶</figcaption>
+          </figure>
+          <figure class="polaroid tilt-random-6">
+            <img src="assets/images/baby6.jpeg" alt="Baby photo 6" />
+            <figcaption>Little Welly Boots 🧸</figcaption>
+          </figure>
+          <figure class="polaroid tilt-random-7">
+            <img src="assets/images/baby7.jpeg" alt="Baby photo 7" />
+            <figcaption>Sisters in pink 💗</figcaption>
+          </figure>
+          <figure class="polaroid tilt-random-8">
+            <img src="assets/images/baby8.jpeg" alt="Baby photo 8" />
+            <figcaption>Always been a fiend for sweet treats 🥹</figcaption>
+          </figure>
+          <figure class="polaroid tilt-random-9">
+            <img src="assets/images/baby9.jpeg" alt="Baby photo 9" />
+            <figcaption>Always on it with the poses 🌙</figcaption>
+          </figure>
+          <figure class="polaroid tilt-random-10">
+            <img src="assets/images/baby10.jpeg" alt="Baby photo 10" />
+            <figcaption>Little Doogie ✨</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- Music -->
+    <audio id="bgMusic" loop>
+      <source src="assets/music/love.mp3" type="audio/mp3" />
+    </audio>
+    <button class="music-control" id="musicControl" type="button" aria-label="Toggle music">🎵</button>
+
+  </section>
+
+  <!-- Fullscreen Photo Viewer -->
+  <div class="photo-overlay" id="photoOverlay" aria-hidden="true">
+    <div class="photo-viewer" role="dialog" aria-modal="true" aria-label="Photo viewer">
+      <button id="viewerClose" type="button" aria-label="Close viewer">✕</button>
+      <img id="viewerImg" alt="" />
+      <p id="viewerCaption"></p>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
